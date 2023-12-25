@@ -1,3 +1,88 @@
+페이지1 분석자료
+class ForExam {
+  constructor() {
+    // ForExam 클래스의 생성자입니다. 현재는 비어 있습니다.
+  }
+
+  // 시험 데이터를 초기화하는 메서드
+  initData() {
+    // 시험 데이터를 설정하는 config 객체
+    const config = {
+      // 기본 문제 배열
+      baseArray: ["피카츄", "라이츄", "꼬부기"],
+      // 특별한 문제 번호 배열
+      specialProblems: [10, 16, 17, 18, 19, 20],
+      // HTML 태그 문제 번호 배열
+      htmlTagProblems: [22, 23, 25, 27, 29, 30],
+      // 문제 시작 인덱스
+      startProblemIndex: 1,
+      // 문제 끝 인덱스
+      endProblemIndex: 30,
+    };
+
+    // 반복문을 통해 문제를 동적으로 생성하고 해당 문제 번호에 할당
+    for (let i = config.startProblemIndex; i <= config.endProblemIndex; i++) {
+      // 현재 문제 번호(i)에 해당하는 문제 데이터 생성 및 할당
+      this["problem" + i] = this.generateProblemData(
+        i,                      // 현재 문제 번호
+        config.baseArray,       // 기본 문제 배열
+        config.specialProblems  // 특별한 문제 번호 배열
+      );
+    }
+
+    // 16번 문제에 특별한 데이터를 할당
+    this.problem16 = [
+      ["피카츄", "라이츄"],
+      ["파이리", "꼬부기"],
+    ];
+
+    // HTML 태그 문제들에 대해 <li> 태그 추가 등의 조작 수행
+    this.assembleHTMLTags(config.htmlTagProblems);
+  }
+
+  // 문제 데이터를 생성하는 메서드
+  generateProblemData(problemNumber, baseArray, specialProblems) {
+    // 만약 특별한 문제인 경우 기본 배열에 "꼬부기"를 추가하여 반환하고, 그렇지 않으면 기본 배열의 복사본 반환
+    if (specialProblems.includes(problemNumber)) {
+      return [...baseArray, "꼬부기"];
+    }
+    return baseArray.slice();
+  }
+
+  // HTML 태그 문제들을 조립하는 메서드
+  assembleHTMLTags(htmlTagProblems) {
+    // 주어진 HTML 태그 문제 번호 배열에 대해 해당 문제의 데이터에 대한 조립을 수행
+    for (let problem of htmlTagProblems) {
+      // 이미 HTML 태그가 있는 경우 그대로 두고, 없는 경우에는 <li> 태그 추가
+      this["problem" + problem] = this["problem" + problem].map((item) => {
+        if (item.includes("<")) {
+          // 이미 HTML 태그가 있는 경우에는 그대로 반환
+          return item;
+        }
+        // HTML 태그가 없는 경우에는 <li> 태그로 감싸서 반환
+        return `<li>${item}</li>`;
+      });
+    }
+  }
+}
+
+// ForExam 클래스의 인스턴스 생성
+let examInstance = new ForExam(); 
+
+// 시험 데이터 초기화
+examInstance.initData();
+
+// 생성된 인스턴스를 콘솔에 출력
+console.dir(examInstance);
+
+// 특정 문제 확인 (예: 5번 문제)
+console.log("5번 문제 데이터:", examInstance.problem5);
+
+
+
+
+페이지2 분석자료
+
 1. 배열의 모든 요소를 대문자로 변환하세요
    this["problem1"] = this["problem1"].map(item => item.toUpperCase());
 
