@@ -1,3 +1,5 @@
+포켓몬 시험 페이지 분석 (페이지 1: ForExam 클래스)
+
 페이지1 분석자료
 class ForExam {
   constructor() {
@@ -81,7 +83,7 @@ console.log("5번 문제 데이터:", examInstance.problem5);
 
 
 
-페이지2 분석자료
+페이지2 분석자료 (페이지 2: 배열 조작 연습)
 
 1. 배열의 모든 요소를 대문자로 변환하세요
    this["problem1"] = this["problem1"].map(item => item.toUpperCase());
