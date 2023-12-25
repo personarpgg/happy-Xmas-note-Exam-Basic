@@ -1,4 +1,6 @@
-class ForExam {
+let examInstance = new ForExam();
+examInstance.initData();
+consolclass ForExam {
     constructor() {
         // 생성자는 여기서도 생략 가능합니다.
     }
@@ -13,9 +15,7 @@ class ForExam {
         };
 
         for (let i = config.startProblemIndex; i <= config.endProblemIndex; i++) {
-            if (!this['problem' + i]) {
-                this['problem' + i] = this.generateProblemData(i, config.baseArray, config.specialProblems);
-            }
+            this['problem' + i] = this.generateProblemData(i, config.baseArray, config.specialProblems);
         }
 
         this.problem16 = [["피카츄", "라이츄"], ["파이리", "꼬부기"]];
@@ -32,18 +32,17 @@ class ForExam {
 
     assembleHTMLTags(htmlTagProblems) {
         for (let problem of htmlTagProblems) {
-            if (this["problem" + problem]) {
-                this["problem" + problem] = this["problem" + problem].map(item => {
-                    if (item.includes('<')) {
-                        return item;
-                    }
-                    return `<li>${item}</li>`;
-                });
-            }
+            this["problem" + problem] = this["problem" + problem].map(item => {
+                if (item.includes('<')) {
+                    return item;
+                }
+                return `<li>${item}</li>`;
+            });
         }
     }
 }
 
-let examInstance = new ForExam(); // 변수 이름을 변경했습니다.
+let examInstance = new ForExam();
 examInstance.initData();
 console.dir(examInstance);
+e.dir(examInstance);
