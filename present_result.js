@@ -45,7 +45,36 @@ class ForExam {
       });
     }
   }
+
+  // 대문자로 변환하는 메서드 추가
+  capitalizeAllProblems() {
+    for (let i = 1; i <= 30; i++) {
+      if (Array.isArray(this["problem" + i])) {
+        this["problem" + i] = this["problem" + i].map((item) =>
+          item.toUpperCase()
+        );
+      }
+    }
+  }
+
+  // 웹 페이지에 HTML 추가하는 메서드
+  addToPage() {
+    const container = document.getElementById("examContent");
+
+    for (let i = 1; i <= 30; i++) {
+      const problemData = this["problem" + i];
+      if (problemData) {
+        const problemElement = document.createElement("div");
+        problemElement.innerHTML = `<h2>Problem ${i}</h2><ul>${problemData.join(
+          ""
+        )}</ul>`;
+        container.appendChild(problemElement);
+      }
+    }
+  }
 }
 
-let examInstance = new ForExam(); 
-console.dir(examInstance);
+let examInstance = new ForExam();
+examInstance.initData();
+examInstance.capitalizeAllProblems(); // 모든 문제 대문자로 변환 메서드 호출
+examInstance.addToPage();
